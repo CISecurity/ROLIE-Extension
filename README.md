@@ -4,12 +4,13 @@ This repository contains a template document and makefile for ROLIE extensions. 
 ## Instructions
 
 1. Fork or copy this repository
-2. Rename `draft-banghart-mile-rolie-extensiontemplate-00.xml` to whatever you need (in accordance with IETF naming conventions)
-3. Work your way through the renamed file, following the embedded instructions
-4. Modify this `README.md` file to suit your needs
+2. Rename `draft-banghart-mile-rolie-extensiontemplate.xml` to whatever you need (in accordance with IETF naming conventions, and so that it matches the pattern described in the make files)
+3. Modify this `README.md` file to suit your needs
   * Update overview (root paragraph above)
   * Remove these instructions
   * Update "Contributing" section below
+4. Follow the instructions embedded in the file renamed in step 2.
+
 
 ## Building the Draft
 Formatted text and HTML versions of the draft can be built using `make`.
@@ -40,10 +41,6 @@ the entire Working Group sees your input in a timely fashion.
 
 2. If you have **editorial** suggestions (i.e., those that do not change the
 meaning of the specification), you can either:
-
-
-
-
 
   a) Fork this repository and submit a pull request; this is the lowest
   friction way to get editorial changes in.
