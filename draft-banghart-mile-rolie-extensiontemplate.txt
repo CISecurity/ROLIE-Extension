@@ -1,0 +1,448 @@
+
+
+
+
+MILE Working Group                                           S. Banghart
+Internet-Draft            National Institute of Standards and Technology
+Intended status: Informational                         September 7, 2017
+Expires: March 11, 2018
+
+
+                     Template for ROLIE Extensions
+             draft-banghart-mile-rolie-extensiontemplate-00
+
+Abstract
+
+   {This document provides a template for the creation of ROLIE
+   extension specifications.  While intended as only guidance, any
+   author intending to create a ROLIE extension should follow this
+   template in order to ensure that extension registrations are accepted
+   by the working group.}
+
+Status of This Memo
+
+   This Internet-Draft is submitted in full conformance with the
+   provisions of BCP 78 and BCP 79.
+
+   Internet-Drafts are working documents of the Internet Engineering
+   Task Force (IETF).  Note that other groups may also distribute
+   working documents as Internet-Drafts.  The list of current Internet-
+   Drafts is at http://datatracker.ietf.org/drafts/current/.
+
+   Internet-Drafts are draft documents valid for a maximum of six months
+   and may be updated, replaced, or obsoleted by other documents at any
+   time.  It is inappropriate to use Internet-Drafts as reference
+   material or to cite them other than as "work in progress."
+
+   This Internet-Draft will expire on March 11, 2018.
+
+Copyright Notice
+
+   Copyright (c) 2017 IETF Trust and the persons identified as the
+   document authors.  All rights reserved.
+
+   This document is subject to BCP 78 and the IETF Trust's Legal
+   Provisions Relating to IETF Documents
+   (http://trustee.ietf.org/license-info) in effect on the date of
+   publication of this document.  Please review these documents
+   carefully, as they describe your rights and restrictions with respect
+   to this document.  Code Components extracted from this document must
+   include Simplified BSD License text as described in Section 4.e of
+   the Trust Legal Provisions and are provided without warranty as
+   described in the Simplified BSD License.
+
+
+
+Banghart                 Expires March 11, 2018                 [Page 1]
+
+Internet-Draft                    ROLIE                   September 2017
+
+
+Table of Contents
+
+   1.  Introduction  . . . . . . . . . . . . . . . . . . . . . . . .   2
+   2.  Terminology . . . . . . . . . . . . . . . . . . . . . . . . .   3
+   3.  Additional Requirements for the Atom Publishing Protocol  . .   3
+     3.1.  Use of HTTP requests  . . . . . . . . . . . . . . . . . .   4
+     3.2.  Requirements for the app:service element  . . . . . . . .   4
+     3.3.  Requirements for the app:categories element . . . . . . .   4
+   4.  Additonal Requirements for the Atom Syndication Format  . . .   4
+     4.1.  Additonal Requirements for the atom:feed element  . . . .   4
+     4.2.  Additonal Requirements for the atom:entry element . . . .   4
+   5.  Information-type Extensions . . . . . . . . . . . . . . . . .   5
+     5.1.  The "information-type" information type . . . . . . . . .   5
+       5.1.1.  Use of the rolie:format element . . . . . . . . . . .   5
+   6.  rolie:property Extensions . . . . . . . . . . . . . . . . . .   5
+     6.1.  urn:ietf:params:rolie:property:ext-prefix:example . . . .   6
+   7.  atom:link Extensions  . . . . . . . . . . . . . . . . . . . .   6
+   8.  Other Registered Extensions . . . . . . . . . . . . . . . . .   6
+   9.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .   7
+     9.1.  information-type information-type . . . . . . . . . . . .   7
+     9.2.  ext-prefix:example property . . . . . . . . . . . . . . .   7
+   10. Security Considerations . . . . . . . . . . . . . . . . . . .   7
+   11. Privacy Considerations  . . . . . . . . . . . . . . . . . . .   8
+   12. Normative References  . . . . . . . . . . . . . . . . . . . .   8
+   Appendix A.  Schema . . . . . . . . . . . . . . . . . . . . . . .   8
+   Appendix B.  Examples of Use  . . . . . . . . . . . . . . . . . .   8
+   Author's Address  . . . . . . . . . . . . . . . . . . . . . . . .   8
+
+1.  Introduction
+
+   {This document is a template guide for the creation of ROLIE
+   extensions.  Each section in this document represents a section that
+   could appear in a ROLIE extension.  Each section will describe
+   itself, as well as the criteria under which it should appear in the
+   document.  All extensions should adhere to the section numbers and
+   the ordering of the sections in this template, this way section
+   number references are consistent across extensions.  Likewise, anchor
+   values should remain consistent with the anchor values used in this
+   template.}
+
+   {Text inside of curly brackets is template commentary, and should be
+   removed when writing the extension.}
+
+   {The introduction section is important when defining a ROLIE
+   extension.  The introduction should define what the extension intends
+   to add to ROLIE as unambiguously as possible.  The section should
+   cover what use cases the extension intends to address, or in other
+
+
+
+
+Banghart                 Expires March 11, 2018                 [Page 2]
+
+Internet-Draft                    ROLIE                   September 2017
+
+
+   words, the "why" of the extension.  The more detail provided here the
+   less confusion there will be over what the extension does.}
+
+2.  Terminology
+
+   The key words "MUST," "MUST NOT," "REQUIRED," "SHALL," "SHALL NOT,"
+   "SHOULD," "SHOULD NOT," "RECOMMENDED," "MAY," and "OPTIONAL" in this
+   document are to be interpreted as described in [RFC2119].
+
+   Definitions for some of the common computer security-related
+   terminology used in this document can be found in Section 2 of
+   [RFC5070].
+
+   {Several placeholders are used throughout this document, to be
+   replaced by the appropriate values when the extension is written.
+   These placeholders are:
+
+      extension-name : This should be replaced by the name of the
+      extension.  This value is fairly flexible, and is used in prose
+      text.
+
+      ext-prefix : This should be replace by the chosen prefix of the
+      extension.  This should be a short, unique prefix to identify the
+      extension in the ROLIE namespace.
+
+      information-type : This should be replaced with the normative name
+      of an information type.  Documents may have multiple information
+      types defined, in which case this placeholder may have multiple
+      valid values.}
+
+   {Any other text inside of square brackets ([]) is intended to be
+   placeholder text to be substituted by the extension author.}
+
+3.  Additional Requirements for the Atom Publishing Protocol
+
+   {This section lists any additional requirements imposed on the Atom
+   Publication Protocol when a repository is implementing or utilizing
+   the extension.  This includes both protocol requirements as well as
+   format requirements on the Service and Category Documents.  As with
+   previous sections, this section must appear in the document, but may
+   specify that no additional requirements are imposed.  Note that the
+   three sub-sections given below are examples and guidelines,
+   additional sections may be needed as appropriate.}
+
+   This document does not specify any additional requirements for use of
+   the Atom Publishing Protocol.
+
+
+
+
+
+Banghart                 Expires March 11, 2018                 [Page 3]
+
+Internet-Draft                    ROLIE                   September 2017
+
+
+   This document specifies the following requirements for use of the
+   Atom Publishing Protocol.
+
+3.1.  Use of HTTP requests
+
+   {Provides additional requirements surrounding the handling of HTTP
+   requests in APP.  This section should NOT appear in the document if
+   there are no requirements}
+
+3.2.  Requirements for the app:service element
+
+   {Provides additional requirements surrounding the service document in
+   APP.  This section should NOT appear in the document if there are no
+   requirements}
+
+3.3.  Requirements for the app:categories element
+
+   {Provides additional requirements surrounding the category document
+   in APP.  This section should NOT appear in the document if there are
+   no requirements.}
+
+4.  Additonal Requirements for the Atom Syndication Format
+
+   {This section lays out any additional requirements imposed on the
+   Atom Syndication Format.  As with previous sections, this section
+   must appear in the document, but may specify that no additional
+   requirements are imposed.  The sub-sections given below are not
+   required to appear, but are given as examples.}
+
+   This document does not specify any additional requirements on the
+   Atom Syndication Format.
+
+   This document specifies the following additional requirements for the
+   Atom Syndication Format.
+
+4.1.  Additonal Requirements for the atom:feed element
+
+   {This section lays out additional requirements imposed on Atom
+   Syndication Format feeds by this extension.  Any changes made to
+   schema should be represented both here and in Appendix 1.}
+
+4.2.  Additonal Requirements for the atom:entry element
+
+   {This section lays out additional requirements imposed on Atom
+   Syndication Format entries by this extension.  Any changes made to
+   schema should be represented both here and in Appendix 1.}
+
+
+
+
+
+Banghart                 Expires March 11, 2018                 [Page 4]
+
+Internet-Draft                    ROLIE                   September 2017
+
+
+5.  Information-type Extensions
+
+   {This section should always appear in an extension.  If no
+   information types are defined the first statement should be the only
+   content in this section.  Multiple child sections may be used to
+   describe multiple information types.}
+
+   This document does not define any new information types.
+
+   This document defines the following information type[s]:
+
+5.1.  The "information-type" information type
+
+   {A brief overview of the information type should be here.  Any terms
+   used in this description should be carefully defined and described.
+   A recommendation is to create a non-exhaustive list of what
+   information in this category may achieve, or a list of example
+   information that would fall into this category.  Avoid discussion of
+   specific formats in this section, and focus on high level information
+   concepts.  A list or description of what kinds of information this
+   information type would not include may also be desirable.  The
+   "information-type" part of the anchor should be replaced with the
+   name of the information type.}
+
+5.1.1.  Use of the rolie:format element
+
+   {This section should be used to discuss the formats that are likely
+   or possible to be used to convey this information type.  Specific
+   information types can be listed if desired.  Example given below.}
+
+   The information-type example format  {If present, this text should
+      discuss the format in question.  It should make clear how this
+      format would be used to convey the given information type, while
+      making it clear that this format is not a requirement.  For more
+      detailed information, a reference should be provided to the
+      specification for this format, or some other static source of
+      information.}
+
+6.  rolie:property Extensions
+
+   {This section defines the requirements around the use of the
+   rolie:property element in Entries.  Additionally, this section should
+   be used to discuss any new properties that are being registered by
+   this extension.  An example is provided below.}
+
+   {This section should always appear in the document, but may specify
+   if there are no requirements}
+
+
+
+
+Banghart                 Expires March 11, 2018                 [Page 5]
+
+Internet-Draft                    ROLIE                   September 2017
+
+
+   This document does not register any new rolie:property names.
+
+   This document registers new valid rolie:property names as follows:
+
+6.1.  urn:ietf:params:rolie:property:ext-prefix:example
+
+   {A detailed description of the property should be provided in this
+   subsection.  It is important that detailed requirements are listed
+   here that define what the expected value is of this property, and how
+   that value is derived.  How the property is expected to be used, and
+   in what cases the property is expected to appear is also valuable
+   information.  The IANA registry will reference this section as its
+   normative text.}
+
+7.  atom:link Extensions
+
+   {This section defines new link relationships.  Each relationship
+   should be named,described, and given a requirement level.  A table or
+   list structure is preferred.  An example is provided below.}
+
+   {This section should always appear in the document, but may specify
+   if there are no additional expected link relationships.}
+
+   This document does not define any new link relationships.
+
+   This document defines new valid link relationships as follows:
+
+   +----------+---------------------------+----------------------------+
+   | Name     | Description               | Conformance                |
+   +----------+---------------------------+----------------------------+
+   | rel-name | A brief description of    | A RFC 2119 normative word  |
+   |          | what this link would      | to denote the              |
+   |          | dereference to, and what  | implementation support     |
+   |          | this uses this link       | requirement for this link  |
+   |          | relationship has.         | relationship.              |
+   +----------+---------------------------+----------------------------+
+
+       Table 1: New Link Relations for the extension-name Extension
+
+8.  Other Registered Extensions
+
+   {This section should contain normative text around other registered
+   extensions not covered by the other sections.  This could include
+   other registered category values or extensions to related IANA
+   tables.}
+
+   {This section should always appear in the document, but may specific
+   that there are no additional extensions.}
+
+
+
+Banghart                 Expires March 11, 2018                 [Page 6]
+
+Internet-Draft                    ROLIE                   September 2017
+
+
+   There are no additional extensions to define.
+
+   This document defines additional extensions as follows:
+
+9.  IANA Considerations
+
+   {The IANA considerations section must always appear as per IETF
+   standards.  Any registrations must be listed here following the
+   registration rules laid out in the ROLIE core document.  Examples are
+   provided below for the example information type and the example
+   property laid out above.}
+
+9.1.  information-type information-type
+
+   IANA has added an entry to the "ROLIE Security Resource Information
+   Type Sub-Registry" registry located at
+   <https://www.iana.org/assignments/rolie/category/information-type> .
+
+   The entry is as follows:
+
+      name: information-type
+
+      index: TBD
+
+      reference: This document, Section 5.1
+
+9.2.  ext-prefix:example property
+
+   IANA has added an entry to the "ROLIE URN Parameters" registry
+   located in <https://www.iana.org/assignments/rolie/>.
+
+      name: property:ext-prefix:example
+
+      Extension IRI: urn:ietf:params:rolie:property:ext-prefix:example
+
+      Reference: This document, Section 6.1
+
+      Subregistry: None
+
+10.  Security Considerations
+
+   {Much of the security considerations are covered in the ROLIE core
+   security considerations section.  This section should cover the
+   security considerations unique or especially important to the use
+   cases covered by this extension.  The formats you expect to use, how
+   properties are derived and displayed, additional link relationships,
+   and any other new requirements can generate new security concerns.}
+
+
+
+
+Banghart                 Expires March 11, 2018                 [Page 7]
+
+Internet-Draft                    ROLIE                   September 2017
+
+
+11.  Privacy Considerations
+
+   {Similar to the security considerations above, much of the primary
+   privacy considerations are covered in the ROLIE core.  Consider the
+   unique privacy concerns involved in the use case covered by this
+   extension.  Additional information exposed by new properties or an
+   increased likelihood for this extension to be used in open-access
+   public repositories are possible considerations. }
+
+12.  Normative References
+
+   [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
+              Requirement Levels", BCP 14, RFC 2119,
+              DOI 10.17487/RFC2119, March 1997, <https://www.rfc-
+              editor.org/info/rfc2119>.
+
+   [RFC5070]  Danyliw, R., Meijer, J., and Y. Demchenko, "The Incident
+              Object Description Exchange Format", RFC 5070,
+              DOI 10.17487/RFC5070, December 2007, <https://www.rfc-
+              editor.org/info/rfc5070>.
+
+   [RFC4949]  Shirey, R., "Internet Security Glossary, Version 2",
+              FYI 36, RFC 4949, DOI 10.17487/RFC4949, August 2007,
+              <https://www.rfc-editor.org/info/rfc4949>.
+
+Appendix A.  Schema
+
+   {Any new schema requirements are placed here.}
+
+   This document does not require any schema extensions.
+
+Appendix B.  Examples of Use
+
+   {If valuable, examples should be provided of use cases and of ideal
+   atom:feeds and atom:entries.  Simply an entry that uses any newly
+   registered information types, link relationships, properties, or
+   formats provides a useful reference for implementers.
+
+Author's Address
+
+   Stephen Banghart
+   National Institute of Standards and Technology
+   100 Bureau Drive
+   Gaithersburg, Maryland  20877
+   USA
+
+   Email: stephen.banghart@nist.gov
+
+
+
+
+Banghart                 Expires March 11, 2018                 [Page 8]

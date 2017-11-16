@@ -1,0 +1,559 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head profile="http://www.w3.org/2006/03/hcard http://dublincore.org/documents/2008/08/04/dc-html/">
+  <meta http-equiv="Content-Type" content="text/html; charset=us-ascii" />
+
+  <title>Template for ROLIE Extensions</title>
+
+  
+<style type="text/css">/*<![CDATA[*/
+@viewport {
+  zoom: 1.0;
+  width: extend-to-zoom;
+}
+@-ms-viewport {
+  width: extend-to-zoom;
+  zoom: 1.0;
+}
+
+@media screen and (min-width: 1024px) {
+  ul.toc, #rfc\.toc {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    right: calc(50vw - 525px);
+    width: 300px;
+    z-index: 1;
+  }
+  #rfc\.toc {
+    top: 15px;
+  }
+  ul.toc {
+    top: 80px;
+    overflow: auto;
+  }
+
+  body {
+    padding-right: 350px;
+  }
+}
+
+body {
+  font: 15px "Helvetica Neue",Helvetica,Arial,sans-serif;
+  color: #333;
+  font-size-adjust: 0.5;
+  line-height: 130%;
+  margin: 25px auto;
+  max-width: 724px;
+}
+
+.title, .filename, h1, h2, h3, h4 {
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-size-adjust: 0.5;
+  font-weight: 500;
+  color: #333;
+  line-height: 100%;
+  margin: 0.8em 0 0.3em;
+}
+.title { font-size: 36px; }
+h1 { font-size: 30px; }
+h2 { font-size: 24px; }
+h3, h4 { font-size: 18px; }
+h1 a[href], h2 a[href], h3 a[href], h4 a[href] {
+  color: #333;
+}
+
+ul.toc li {
+  list-style: none;
+  text-indent: -2.5em;
+  padding-left: 2.5em;
+  padding-bottom: 5px;
+  margin: 0;
+}
+ul.toc ul {
+  margin: 0;
+}
+/* xml2rfc nests ul directly inside ul which messes with the style badly */
+ul.toc, ul.toc>ul, ul.toc ul>ul {
+  margin: 0 0 0 1.5em;
+}
+
+table {
+  margin-left: 0em;
+  border-collapse: collapse;
+}
+th {
+  text-align: left;
+  border-bottom: 2px solid #ddd;
+}
+td {
+  border-top: 1px solid #ddd;
+  vertical-align: top;
+}
+tr:nth-child(2n+1) > td,
+tr:nth-child(2n+1) > th {
+  background-color: #f9f9f9;
+}
+td.reference {
+  max-width: 200px;
+  border-top: none;
+  padding-right: 1em;
+}
+.right {
+  text-align: right;
+}
+
+
+table.header {
+  width: 100%;
+}
+table.header td {
+  border: none;
+  background-color: transparent;
+  color: black;
+}
+.filename {
+  color: rgb(119, 119, 119);
+  font-size: 23px;
+  font-weight: normal;
+  height: auto;
+  line-height: 100%;
+}
+#rfc\.abstract+p {
+  font-size: 20px;
+  font-weight: 300;
+  line-height: 130%;
+}
+
+samp, tt, code, pre {
+  font: 11pt consolas, monospace;
+  font-size-adjust: none;
+}
+pre {
+  background-color: #eee;
+  border: 1px solid #ddd;
+  overflow-x: auto;
+  padding: 5px;
+  margin: 5px;
+}
+.figure {
+  font-style: italic;
+  margin: 0 1.5em;
+}
+
+address {
+  margin: 10px 0 0;
+}
+.vcard {
+  font-style: normal;
+}
+.vcardline {
+  display: block;
+}
+.vcardline .fn {
+  font-weight: bold;
+}
+.vcardline .hidden {
+  display: none;
+}
+
+dl {
+  margin-left: 1em;
+}
+dl.dl-horizontal: {
+  margin-left: 0;
+}
+dl > dt {
+  float: left;
+  margin-right: 1em;
+}
+dl.nohang > dt {
+  float: none;
+}
+dl > dd {
+  margin-bottom: .5em;
+}
+dl.compact > dd {
+  margin-bottom: 0em;
+}
+dl > dd > dl {
+  margin-top: 0.5em;
+  margin-bottom: 0em;
+}
+ul.empty {
+  list-style-type: none;
+}
+ul.empty li {
+  margin-top: .5em;
+}
+
+hr {
+  border: 0;
+  border-top: 1px solid #eee;
+}
+
+a {
+  text-decoration: none;
+}
+a[href] {
+  color: #2a6496;
+}
+a[href]:hover {
+  background-color: #eee;
+}
+
+ol, ul, li, p {
+  padding: 0;
+  margin: 0.5em 0 0.5em 2em;
+}
+li, p {
+  margin-left: 0;
+}
+address {
+  font-style: normal;
+}
+
+.github-fork-ribbon-wrapper {
+  display: none;
+}
+@media screen and (min-width: 800px) {
+  /* "Fork me on GitHub" CSS ribbon based on
+   * https://github.com/simonwhitaker/github-fork-ribbon-css
+   */
+  .github-fork-ribbon {
+    position: absolute;
+    padding: 2px 0;
+    background-color: #a00;
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.15));
+    box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.5);
+    font: 700 12px "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+    pointer-events: auto;
+
+    top: 38px;
+    right: -45px;
+
+    transform: rotate(45deg);
+  }
+
+  .github-fork-ribbon a[href],
+  .github-fork-ribbon a[href]:hover {
+    color: #fff;
+    background-color: transparent;
+    text-decoration: none;
+    text-shadow: 0 -1px rgba(0, 0, 0, 0.5);
+    text-align: center;
+
+    width: 190px;
+    line-height: 18px;
+
+    display: inline-block;
+    padding: 2px 0;
+
+    border: 1.5px dotted #fff;
+    border-color: rgba(255, 255, 255, 0.6);
+  }
+
+  .github-fork-ribbon-wrapper {
+    display: block;
+    width: 130px;
+    height: 130px;
+    position: absolute;
+    overflow: hidden;
+    top: 0; right: 0;
+    z-index: 2;
+    pointer-events: none;
+  }
+}
+@media screen and (min-width: 1000px) {
+  .github-fork-ribbon-wrapper {
+    position: fixed;
+  }
+/*]]>*/</style>
+
+
+  <link href="#rfc.toc" rel="Contents"/>
+<link href="#rfc.section.1" rel="Chapter" title="1 Introduction"/>
+<link href="#rfc.section.2" rel="Chapter" title="2 Terminology"/>
+<link href="#rfc.section.3" rel="Chapter" title="3 Additional Requirements for the Atom Publishing Protocol"/>
+<link href="#rfc.section.3.1" rel="Chapter" title="3.1 Use of HTTP requests"/>
+<link href="#rfc.section.3.2" rel="Chapter" title="3.2 Requirements for the app:service element"/>
+<link href="#rfc.section.3.3" rel="Chapter" title="3.3 Requirements for the app:categories element"/>
+<link href="#rfc.section.4" rel="Chapter" title="4 Additonal Requirements for the Atom Syndication Format"/>
+<link href="#rfc.section.4.1" rel="Chapter" title="4.1 Additonal Requirements for the atom:feed element"/>
+<link href="#rfc.section.4.2" rel="Chapter" title="4.2 Additonal Requirements for the atom:entry element"/>
+<link href="#rfc.section.5" rel="Chapter" title="5 Information-type Extensions"/>
+<link href="#rfc.section.5.1" rel="Chapter" title="5.1 The &quot;information-type&quot; information type"/>
+<link href="#rfc.section.5.1.1" rel="Chapter" title="5.1.1 Use of the rolie:format element"/>
+<link href="#rfc.section.6" rel="Chapter" title="6 rolie:property Extensions"/>
+<link href="#rfc.section.6.1" rel="Chapter" title="6.1 urn:ietf:params:rolie:property:ext-prefix:example"/>
+<link href="#rfc.section.7" rel="Chapter" title="7 atom:link Extensions"/>
+<link href="#rfc.section.8" rel="Chapter" title="8 Other Registered Extensions"/>
+<link href="#rfc.section.9" rel="Chapter" title="9 IANA Considerations"/>
+<link href="#rfc.section.9.1" rel="Chapter" title="9.1 information-type information-type"/>
+<link href="#rfc.section.9.2" rel="Chapter" title="9.2 ext-prefix:example property"/>
+<link href="#rfc.section.10" rel="Chapter" title="10 Security Considerations"/>
+<link href="#rfc.section.11" rel="Chapter" title="11 Privacy Considerations"/>
+<link href="#rfc.references" rel="Chapter" title="12 Normative References"/>
+<link href="#rfc.appendix.A" rel="Chapter" title="A Schema"/>
+<link href="#rfc.appendix.B" rel="Chapter" title="B Examples of Use"/>
+<link href="#rfc.authors" rel="Chapter"/>
+
+
+  <meta name="generator" content="xml2rfc version 2.5.1 - http://tools.ietf.org/tools/xml2rfc" />
+  <link rel="schema.dct" href="http://purl.org/dc/terms/" />
+
+  <meta name="dct.creator" content="Banghart, S." />
+  <meta name="dct.identifier" content="urn:ietf:id:draft-banghart-mile-rolie-extensiontemplate-00" />
+  <meta name="dct.issued" scheme="ISO8601" content="2017-9-7" />
+  <meta name="dct.abstract" content="{This document provides a template for the creation of ROLIE extension specifications. While intended as only guidance, any author intending to create a ROLIE extension should follow this template in order to ensure that extension registrations are accepted by the working group.}" />
+  <meta name="description" content="{This document provides a template for the creation of ROLIE extension specifications. While intended as only guidance, any author intending to create a ROLIE extension should follow this template in order to ensure that extension registrations are accepted by the working group.}" />
+
+</head>
+
+<body>
+
+  <table class="header">
+    <tbody>
+    
+    	<tr>
+  <td class="left">MILE Working Group</td>
+  <td class="right">S. Banghart</td>
+</tr>
+<tr>
+  <td class="left">Internet-Draft</td>
+  <td class="right">National Institute of Standards and Technology</td>
+</tr>
+<tr>
+  <td class="left">Intended status: Informational</td>
+  <td class="right">September 7, 2017</td>
+</tr>
+<tr>
+  <td class="left">Expires: March 11, 2018</td>
+  <td class="right"></td>
+</tr>
+
+    	
+    </tbody>
+  </table>
+
+  <p class="title">Template for ROLIE Extensions<br />
+  <span class="filename">draft-banghart-mile-rolie-extensiontemplate-00</span></p>
+  
+  <h1 id="rfc.abstract">
+  <a href="#rfc.abstract">Abstract</a>
+</h1>
+<p>{This document provides a template for the creation of ROLIE extension specifications. While intended as only guidance, any author intending to create a ROLIE extension should follow this template in order to ensure that extension registrations are accepted by the working group.}</p>
+<h1 id="rfc.status">
+  <a href="#rfc.status">Status of This Memo</a>
+</h1>
+<p>This Internet-Draft is submitted in full conformance with the provisions of BCP 78 and BCP 79.</p>
+<p>Internet-Drafts are working documents of the Internet Engineering Task Force (IETF).  Note that other groups may also distribute working documents as Internet-Drafts.  The list of current Internet-Drafts is at http://datatracker.ietf.org/drafts/current/.</p>
+<p>Internet-Drafts are draft documents valid for a maximum of six months and may be updated, replaced, or obsoleted by other documents at any time.  It is inappropriate to use Internet-Drafts as reference material or to cite them other than as "work in progress."</p>
+<p>This Internet-Draft will expire on March 11, 2018.</p>
+<h1 id="rfc.copyrightnotice">
+  <a href="#rfc.copyrightnotice">Copyright Notice</a>
+</h1>
+<p>Copyright (c) 2017 IETF Trust and the persons identified as the document authors.  All rights reserved.</p>
+<p>This document is subject to BCP 78 and the IETF Trust's Legal Provisions Relating to IETF Documents (http://trustee.ietf.org/license-info) in effect on the date of publication of this document.  Please review these documents carefully, as they describe your rights and restrictions with respect to this document.  Code Components extracted from this document must include Simplified BSD License text as described in Section 4.e of the Trust Legal Provisions and are provided without warranty as described in the Simplified BSD License.</p>
+
+  
+  <hr class="noprint" />
+  <h1 class="np" id="rfc.toc"><a href="#rfc.toc">Table of Contents</a></h1>
+  <ul class="toc">
+
+  	<li>1.   <a href="#rfc.section.1">Introduction</a></li>
+<li>2.   <a href="#rfc.section.2">Terminology</a></li>
+<li>3.   <a href="#rfc.section.3">Additional Requirements for the Atom Publishing Protocol</a></li>
+<ul><li>3.1.   <a href="#rfc.section.3.1">Use of HTTP requests</a></li>
+<li>3.2.   <a href="#rfc.section.3.2">Requirements for the app:service element</a></li>
+<li>3.3.   <a href="#rfc.section.3.3">Requirements for the app:categories element</a></li>
+</ul><li>4.   <a href="#rfc.section.4">Additonal Requirements for the Atom Syndication Format</a></li>
+<ul><li>4.1.   <a href="#rfc.section.4.1">Additonal Requirements for the atom:feed element</a></li>
+<li>4.2.   <a href="#rfc.section.4.2">Additonal Requirements for the atom:entry element</a></li>
+</ul><li>5.   <a href="#rfc.section.5">Information-type Extensions</a></li>
+<ul><li>5.1.   <a href="#rfc.section.5.1">The "information-type" information type</a></li>
+<ul><li>5.1.1.   <a href="#rfc.section.5.1.1">Use of the rolie:format element</a></li>
+</ul></ul><li>6.   <a href="#rfc.section.6">rolie:property Extensions</a></li>
+<ul><li>6.1.   <a href="#rfc.section.6.1">urn:ietf:params:rolie:property:ext-prefix:example</a></li>
+</ul><li>7.   <a href="#rfc.section.7">atom:link Extensions</a></li>
+<li>8.   <a href="#rfc.section.8">Other Registered Extensions</a></li>
+<li>9.   <a href="#rfc.section.9">IANA Considerations</a></li>
+<ul><li>9.1.   <a href="#rfc.section.9.1">information-type information-type</a></li>
+<li>9.2.   <a href="#rfc.section.9.2">ext-prefix:example property</a></li>
+</ul><li>10.   <a href="#rfc.section.10">Security Considerations</a></li>
+<li>11.   <a href="#rfc.section.11">Privacy Considerations</a></li>
+<li>12.   <a href="#rfc.references">Normative References</a></li>
+<li>Appendix A.   <a href="#rfc.appendix.A">Schema</a></li>
+<li>Appendix B.   <a href="#rfc.appendix.B">Examples of Use</a></li>
+<li><a href="#rfc.authors">Author's Address</a></li>
+
+
+  </ul>
+
+  <h1 id="rfc.section.1"><a href="#rfc.section.1">1.</a> <a href="#starting-intro" id="starting-intro">Introduction</a></h1>
+<p id="rfc.section.1.p.1">{This document is a template guide for the creation of ROLIE extensions. Each section in this document represents a section that could appear in a ROLIE extension. Each section will describe itself, as well as the criteria under which it should appear in the document. All extensions should adhere to the section numbers and the ordering of the sections in this template, this way section number references are consistent across extensions. Likewise, anchor values should remain consistent with the anchor values used in this template.}</p>
+<p id="rfc.section.1.p.2">{Text inside of curly brackets is template commentary, and should be removed when writing the extension.} </p>
+<p id="rfc.section.1.p.3">{The introduction section is important when defining a ROLIE extension. The introduction should define what the extension intends to add to ROLIE as unambiguously as possible. The section should cover what use cases the extension intends to address, or in other words, the "why" of the extension. The more detail provided here the less confusion there will be over what the extension does.}</p>
+<h1 id="rfc.section.2"><a href="#rfc.section.2">2.</a> <a href="#ext-terminology" id="ext-terminology">Terminology</a></h1>
+<p id="rfc.section.2.p.1">The key words "MUST," "MUST NOT," "REQUIRED," "SHALL," "SHALL NOT," "SHOULD," "SHOULD NOT," "RECOMMENDED," "MAY," and "OPTIONAL" in this document are to be interpreted as described in <a href="#RFC2119">[RFC2119]</a>. </p>
+<p id="rfc.section.2.p.2">Definitions for some of the common computer security-related terminology used in this document can be found in Section 2 of <a href="#RFC5070">[RFC5070]</a>.</p>
+<p id="rfc.section.2.p.3">{Several placeholders are used throughout this document, to be replaced by the appropriate values when the extension is written. These placeholders are: </p>
+
+<ul class="empty">
+  <li>extension-name : This should be replaced by the name of the extension. This value is fairly flexible, and is used in prose text.</li>
+  <li>ext-prefix : This should be replace by the chosen prefix of the extension. This should be a short, unique prefix to identify the extension in the ROLIE namespace.</li>
+  <li>information-type : This should be replaced with the normative name of an information type. Documents may have multiple information types defined, in which case this placeholder may have multiple valid values.}</li>
+</ul>
+<p id="rfc.section.2.p.4">{Any other text inside of square brackets ([]) is intended to be placeholder text to be substituted by the extension author.}</p>
+<h1 id="rfc.section.3"><a href="#rfc.section.3">3.</a> <a href="#ext-APP" id="ext-APP">Additional Requirements for the Atom Publishing Protocol</a></h1>
+<p id="rfc.section.3.p.1">{This section lists any additional requirements imposed on the Atom Publication Protocol when a repository is implementing or utilizing the extension. This includes both protocol requirements as well as format requirements on the Service and Category Documents. As with previous sections, this section must appear in the document, but may specify that no additional requirements are imposed.  Note that the three sub-sections given below are examples and guidelines, additional sections may be needed as appropriate.}</p>
+<p id="rfc.section.3.p.2">This document does not specify any additional requirements for use of the Atom Publishing Protocol.</p>
+<p id="rfc.section.3.p.3">This document specifies the following requirements for use of the Atom Publishing Protocol.</p>
+<h1 id="rfc.section.3.1"><a href="#rfc.section.3.1">3.1.</a> <a href="#ext-app-http" id="ext-app-http">Use of HTTP requests</a></h1>
+<p id="rfc.section.3.1.p.1">{Provides additional requirements surrounding the handling of HTTP requests in APP. This section should NOT appear in the document if there are no requirements}</p>
+<h1 id="rfc.section.3.2"><a href="#rfc.section.3.2">3.2.</a> <a href="#ext-app-service" id="ext-app-service">Requirements for the app:service element</a></h1>
+<p id="rfc.section.3.2.p.1">{Provides additional requirements surrounding the service document in APP. This section should NOT appear in the document if there are no requirements}</p>
+<h1 id="rfc.section.3.3"><a href="#rfc.section.3.3">3.3.</a> <a href="#ext-app-category" id="ext-app-category">Requirements for the app:categories element</a></h1>
+<p id="rfc.section.3.3.p.1">{Provides additional requirements surrounding the category document in APP. This section should NOT appear in the document if there are no requirements.}</p>
+<h1 id="rfc.section.4"><a href="#rfc.section.4">4.</a> Additonal Requirements for the Atom Syndication Format</h1>
+<p id="rfc.section.4.p.1">{This section lays out any additional requirements imposed on the Atom Syndication Format. As with previous sections, this section must appear in the document, but may specify that no additional requirements are imposed.  The sub-sections given below are not required to appear, but are given as examples.}</p>
+<p id="rfc.section.4.p.2">This document does not specify any additional requirements on the Atom Syndication Format.</p>
+<p id="rfc.section.4.p.3">This document specifies the following additional requirements for the Atom Syndication Format.</p>
+<h1 id="rfc.section.4.1"><a href="#rfc.section.4.1">4.1.</a> <a href="#ext-synd-feed" id="ext-synd-feed">Additonal Requirements for the atom:feed element</a></h1>
+<p id="rfc.section.4.1.p.1">{This section lays out additional requirements imposed on Atom Syndication Format feeds by this extension.  Any changes made to schema should be represented both here and in Appendix 1.}</p>
+<h1 id="rfc.section.4.2"><a href="#rfc.section.4.2">4.2.</a> <a href="#ext-synd-entry" id="ext-synd-entry">Additonal Requirements for the atom:entry element</a></h1>
+<p id="rfc.section.4.2.p.1">{This section lays out additional requirements imposed on Atom Syndication Format entries by this extension.  Any changes made to schema should be represented both here and in Appendix 1.}</p>
+<h1 id="rfc.section.5"><a href="#rfc.section.5">5.</a> <a href="#infotype" id="infotype">Information-type Extensions</a></h1>
+<p id="rfc.section.5.p.1">{This section should always appear in an extension. If no information types are defined the first statement should be the only content in this section. Multiple child sections may be used to describe multiple information types.}</p>
+<p id="rfc.section.5.p.2">This document does not define any new information types.</p>
+<p id="rfc.section.5.p.3">This document defines the following information type[s]:</p>
+<h1 id="rfc.section.5.1"><a href="#rfc.section.5.1">5.1.</a> <a href="#infotype-information-type" id="infotype-information-type">The "information-type" information type</a></h1>
+<p id="rfc.section.5.1.p.1">{A brief overview of the information type should be here. Any terms used in this description should be carefully defined and described. A recommendation is to create a non-exhaustive list of what information in this category may achieve, or a list of example information that would fall into this category. Avoid discussion of specific formats in this section, and focus on high level information concepts. A list or description of what kinds of information this information type would not include may also be desirable. The "information-type" part of the anchor should be replaced with the name of the information type.}</p>
+<h1 id="rfc.section.5.1.1"><a href="#rfc.section.5.1.1">5.1.1.</a> <a href="#ext-synd-format" id="ext-synd-format">Use of the rolie:format element</a></h1>
+<p id="rfc.section.5.1.1.p.1">{This section should be used to discuss the formats that are likely or possible to be used to convey this information type. Specific information types can be listed if desired.  Example given below.} </p>
+
+<dl>
+  <dt>The information-type example format</dt>
+  <dd style="margin-left: 8">{If present, this text should discuss the format in question. It should make clear how this format would be used to convey the given information type, while making it clear that this format is not a requirement. For more detailed information, a reference should be provided to the specification for this format, or some other static source of information.}</dd>
+</dl>
+<h1 id="rfc.section.6"><a href="#rfc.section.6">6.</a> rolie:property Extensions</h1>
+<p id="rfc.section.6.p.1">{This section defines the requirements around the use of the rolie:property element in Entries. Additionally, this section should be used to discuss any new properties that are being registered by this extension. An example is provided below.}</p>
+<p id="rfc.section.6.p.2">{This section should always appear in the document, but may specify if there are no requirements}</p>
+<p id="rfc.section.6.p.3">This document does not register any new rolie:property names.</p>
+<p id="rfc.section.6.p.4">This document registers new valid rolie:property names as follows:</p>
+<h1 id="rfc.section.6.1"><a href="#rfc.section.6.1">6.1.</a> <a href="#prop-ext-prefx-example" id="prop-ext-prefx-example">urn:ietf:params:rolie:property:ext-prefix:example</a></h1>
+<p id="rfc.section.6.1.p.1">{A detailed description of the property should be provided in this subsection. It is important that detailed requirements are listed here that define what the expected value is of this property, and how that value is derived. How the property is expected to be used, and in what cases the property is expected to appear is also valuable information. The IANA registry will reference this section as its normative text.}</p>
+<h1 id="rfc.section.7"><a href="#rfc.section.7">7.</a> <a href="#ext-synd-entries-link" id="ext-synd-entries-link">atom:link Extensions</a></h1>
+<p id="rfc.section.7.p.1">{This section defines new link relationships. Each relationship should be named,described, and given a requirement level. A table or list structure is preferred. An example is provided below.}</p>
+<p id="rfc.section.7.p.2">{This section should always appear in the document, but may specify if there are no additional expected link relationships.}</p>
+<p id="rfc.section.7.p.3">This document does not define any new link relationships.</p>
+<p id="rfc.section.7.p.4">This document defines new valid link relationships as follows:</p>
+<div id="rfc.table.1"/>
+<div id="links-extension-name-table"/>
+<table cellpadding="3" cellspacing="0" class="tt full center">
+  <caption>New Link Relations for the extension-name                 Extension</caption>
+  <thead>
+    <tr>
+      <th class="left">Name</th>
+      <th class="left">Description</th>
+      <th class="left">Conformance</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="left">rel-name</td>
+      <td class="left">A brief description of what this link would dereference to, and what this uses this link relationship has.</td>
+      <td class="left">A RFC 2119 normative word to denote the implementation support requirement for this link relationship.</td>
+    </tr>
+  </tbody>
+</table>
+<h1 id="rfc.section.8"><a href="#rfc.section.8">8.</a> <a href="#ext-other" id="ext-other">Other Registered Extensions</a></h1>
+<p id="rfc.section.8.p.1">{This section should contain normative text around other registered extensions not covered by the other sections.  This could include other registered category values or extensions to related IANA tables.}</p>
+<p id="rfc.section.8.p.2">{This section should always appear in the document, but may specific that there are no additional extensions.}</p>
+<p id="rfc.section.8.p.3">There are no additional extensions to define.</p>
+<p id="rfc.section.8.p.4">This document defines additional extensions as follows:</p>
+<h1 id="rfc.section.9"><a href="#rfc.section.9">9.</a> IANA Considerations</h1>
+<p id="rfc.section.9.p.1">{The IANA considerations section must always appear as per IETF standards. Any registrations must be listed here following the registration rules laid out in the ROLIE core document. Examples are provided below for the example information type and the example property laid out above.}</p>
+<h1 id="rfc.section.9.1"><a href="#rfc.section.9.1">9.1.</a> <a href="#iana-information-type" id="iana-information-type">information-type information-type</a></h1>
+<p id="rfc.section.9.1.p.1">IANA has added an entry to the "ROLIE Security Resource Information Type Sub-Registry" registry located at <span>&lt;</span><a href="https://www.iana.org/assignments/rolie/category/information-type">https://www.iana.org/assignments/rolie/category/information-type</a><span>&gt;</span> . </p>
+<p id="rfc.section.9.1.p.2">The entry is as follows:</p>
+
+<ul class="empty">
+  <li>name: information-type</li>
+  <li>index: TBD</li>
+  <li>reference: This document, <a href="#infotype-information-type">Section 5.1</a></li>
+</ul>
+<h1 id="rfc.section.9.2"><a href="#rfc.section.9.2">9.2.</a> ext-prefix:example property</h1>
+<p id="rfc.section.9.2.p.1">IANA has added an entry to the "ROLIE URN Parameters" registry located in <span>&lt;</span><a href="https://www.iana.org/assignments/rolie/">https://www.iana.org/assignments/rolie/</a><span>&gt;</span>.</p>
+<p/>
+
+<ul class="empty">
+  <li>name: property:ext-prefix:example</li>
+  <li>Extension IRI: urn:ietf:params:rolie:property:ext-prefix:example</li>
+  <li>Reference: This document, <a href="#prop-ext-prefx-example">Section 6.1</a></li>
+  <li>Subregistry: None</li>
+</ul>
+<h1 id="rfc.section.10"><a href="#rfc.section.10">10.</a> Security Considerations</h1>
+<p id="rfc.section.10.p.1">{Much of the security considerations are covered in the ROLIE core security considerations section. This section should cover the security considerations unique or especially important to the use cases covered by this extension. The formats you expect to use, how properties are derived and displayed, additional link relationships, and any other new requirements can generate new security concerns.}</p>
+<h1 id="rfc.section.11"><a href="#rfc.section.11">11.</a> Privacy Considerations</h1>
+<p id="rfc.section.11.p.1">{Similar to the security considerations above, much of the primary privacy considerations are covered in the ROLIE core. Consider the unique privacy concerns involved in the use case covered by this extension. Additional information exposed by new properties or an increased likelihood for this extension to be used in open-access public repositories are possible considerations. }</p>
+<h1 id="rfc.references"><a href="#rfc.references">12.</a> Normative References</h1>
+<table>
+  <tbody>
+    <tr>
+      <td class="reference">
+        <b id="RFC2119">[RFC2119]</b>
+      </td>
+      <td class="top"><a>Bradner, S.</a>, "<a href="http://tools.ietf.org/html/rfc2119">Key words for use in RFCs to Indicate Requirement Levels</a>", BCP 14, RFC 2119, DOI 10.17487/RFC2119, March 1997.</td>
+    </tr>
+    <tr>
+      <td class="reference">
+        <b id="RFC5070">[RFC5070]</b>
+      </td>
+      <td class="top"><a>Danyliw, R.</a>, <a>Meijer, J.</a> and <a>Y. Demchenko</a>, "<a href="http://tools.ietf.org/html/rfc5070">The Incident Object Description Exchange Format</a>", RFC 5070, DOI 10.17487/RFC5070, December 2007.</td>
+    </tr>
+    <tr>
+      <td class="reference">
+        <b id="RFC4949">[RFC4949]</b>
+      </td>
+      <td class="top"><a>Shirey, R.</a>, "<a href="http://tools.ietf.org/html/rfc4949">Internet Security Glossary, Version 2</a>", FYI 36, RFC 4949, DOI 10.17487/RFC4949, August 2007.</td>
+    </tr>
+  </tbody>
+</table>
+<h1 id="rfc.appendix.A"><a href="#rfc.appendix.A">Appendix A.</a> <a href="#appendix-schema" id="appendix-schema">Schema</a></h1>
+<p id="rfc.section.A.p.1">{Any new schema requirements are placed here.}</p>
+<p id="rfc.section.A.p.2">This document does not require any schema extensions.</p>
+<h1 id="rfc.appendix.B"><a href="#rfc.appendix.B">Appendix B.</a> Examples of Use</h1>
+<p id="rfc.section.B.p.1">{If valuable, examples should be provided of use cases and of ideal atom:feeds and atom:entries. Simply an entry that uses any newly registered information types, link relationships, properties, or formats provides a useful reference for implementers. </p>
+<h1 id="rfc.authors">
+  <a href="#rfc.authors">Author's Address</a>
+</h1>
+<div class="avoidbreak">
+  <address class="vcard">
+	<span class="vcardline">
+	  <span class="fn">Stephen Banghart</span> 
+	  <span class="n hidden">
+		<span class="family-name">Banghart</span>
+	  </span>
+	</span>
+	<span class="org vcardline">National Institute of Standards and Technology</span>
+	<span class="adr">
+	  <span class="vcardline">100 Bureau Drive</span>
+
+	  <span class="vcardline">
+		<span class="locality">Gaithersburg</span>,  
+		<span class="region">Maryland</span> 
+		<span class="code">20877</span>
+	  </span>
+	  <span class="country-name vcardline">USA</span>
+	</span>
+	<span class="vcardline">EMail: <a href="mailto:stephen.banghart@nist.gov">stephen.banghart@nist.gov</a></span>
+
+  </address>
+</div>
+
+</body>
+</html>
